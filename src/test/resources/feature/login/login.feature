@@ -1,6 +1,8 @@
 @screen
 Feature: Customer I can login to web site
 
+
+
   Scenario: Fail login detailed using email
     Given I open url "http://www.fasttrackit.org/OnlineLibrary/"
     When I click on link with text "Log In"
