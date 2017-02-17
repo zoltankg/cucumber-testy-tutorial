@@ -5,6 +5,7 @@ import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,11 +14,17 @@ import static org.hamcrest.core.Is.is;
 
 public class LoginTest extends TestBase {
 
+    private LoginPage loginPage;
+
+    public LoginTest() {
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+    }
+
     @Test
     public void validLoginTest() {
         openBrowser();
 
-        login("eu@fast.com", "eu.pass");
+        loginPage.login("eu@fast.com", "eu.pass");
 
     }
 
@@ -25,7 +32,7 @@ public class LoginTest extends TestBase {
     public void invalidPasswordTest() {
         openBrowser();
 
-        login("eu@fast.com", "eu.pass123");
+        loginPage.login("eu@fast.com", "eu.pass123");
 
         WebElement errorElement = driver.findElement(By.className("error-msg"));
         System.out.println(errorElement.getText());
@@ -38,12 +45,12 @@ public class LoginTest extends TestBase {
     @Test
     public void preferencesChange(){
 
-        validLoginTest();  //first solution for login
+        //validLoginTest();  //first solution for login
 
 
         //second solution for login
-        //openBrowser();
-        //login("eu@fast.com", "eu.pass");
+        openBrowser();
+        loginPage.login("eu@fast.com", "eu.pass");
 
         WebElement preferencesButton = driver.findElement(By.cssSelector("body > nav > div > div > div > button"));
         preferencesButton.click();
@@ -76,17 +83,7 @@ public class LoginTest extends TestBase {
         }
 
 
-        public void login(String user, String pass) {
 
-        WebElement emailField = driver.findElement(By.id("email"));
-        WebElement passField = driver.findElement(By.name("password"));
-        WebElement loginBtn = driver.findElement(By.className("login-btn"));
-
-        emailField.sendKeys(user);
-        passField.sendKeys(pass);
-        loginBtn.click();
-
-        }
 
 
 
