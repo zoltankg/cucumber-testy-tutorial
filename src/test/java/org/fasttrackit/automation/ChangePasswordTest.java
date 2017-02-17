@@ -13,14 +13,19 @@ import static org.hamcrest.core.Is.is;
 public class ChangePasswordTest extends TestBase {
 
     private LoginPage loginPage;
+    private ChangePasswordPage changePasswordPage;
 
     public ChangePasswordTest() {
 
         loginPage = PageFactory.initElements(driver, LoginPage.class);
+        changePasswordPage = PageFactory.initElements(driver, ChangePasswordPage.class);
     }
 
+
+
+
     @Test
-    public void preferencesChange(){
+    public void changePasswordWithInvalidCurrentPassword(){
 
         openBrowser();
         loginPage.login("eu@fast.com", "eu.pass");
@@ -28,19 +33,7 @@ public class ChangePasswordTest extends TestBase {
         WebElement preferencesBtn = driver.findElement(By.cssSelector("body > nav > div > div > div > button"));
         preferencesBtn.click();
 
-        WebElement currentPasswordField = driver.findElement(By.name("password"));
-        WebElement newPasswordField = driver.findElement(By.name("newPassword"));
-        WebElement repeatPasswordField = driver.findElement(By.name("newPasswordRepeat"));
-
-        WebElement saveChanges = driver.findElement(By.cssSelector("#preferences-win > form > div > div > div.modal-body > div:nth-child(5) > div > button"));
-
-        Utils.sleep(2000);
-
-        currentPasswordField.sendKeys("wrong-pass");
-        newPasswordField.sendKeys("new.pass");
-        repeatPasswordField.sendKeys("new.pass");
-
-        saveChanges.click();
+        changePasswordPage.changePasswordWithInvalidCurrentPassword("wrong-pass", "new.pass", "new.pass");
 
         WebElement errorMessageOnPreferences = driver.findElement(By.cssSelector("#preferences-win > form > div > div > div.modal-body > div.status-msg"));
         System.out.println(errorMessageOnPreferences.getText());
