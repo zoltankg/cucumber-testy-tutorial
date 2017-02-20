@@ -13,13 +13,17 @@ public class ChangePasswordPage {
     private WebElement newPasswordField;
     @FindBy(name = "newPasswordRepeat")
     private WebElement repeatPasswordField;
-    @FindBy(css = "#preferences-win > form > div > div > div.modal-body > div:nth-child(5) > div > button")
+    //@FindBy(css = "#preferences-win > form > div > div > div.modal-body > div:nth-child(5) > div > button")
+    @FindBy(xpath = "//*[@id='preferences-win']//button[normalize-space(text())='Save']")
     private WebElement saveChanges;
 
+    @FindBy(className = "status-msg")
+    private WebElement statusMsg;
 
 
-    public void changePasswordWithInvalidCurrentPassword(String currentPass, String newPass, String repeatNewPass) {
-        Utils.sleep(2000);
+
+    public void changePassword(String currentPass, String newPass, String repeatNewPass) {
+        Utils.sleep(1000);
 
         currentPasswordField.sendKeys(currentPass);
         newPasswordField.sendKeys(newPass);
@@ -27,4 +31,9 @@ public class ChangePasswordPage {
         saveChanges.click();
     }
 
+    public String getStatusMessage() {
+        String msg = statusMsg.getText();
+        System.out.println(msg);
+        return msg;
+    }
 }

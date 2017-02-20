@@ -13,12 +13,12 @@ import static org.hamcrest.core.Is.is;
 public class ChangePasswordTest extends TestBase {
 
     private LoginPage loginPage;
-    private ChangePasswordPage changePasswordPage;
+    private ChangePasswordPage page;
 
     public ChangePasswordTest() {
 
         loginPage = PageFactory.initElements(driver, LoginPage.class);
-        changePasswordPage = PageFactory.initElements(driver, ChangePasswordPage.class);
+        page = PageFactory.initElements(driver, ChangePasswordPage.class);
     }
 
 
@@ -27,19 +27,31 @@ public class ChangePasswordTest extends TestBase {
     @Test
     public void changePasswordWithInvalidCurrentPassword(){
 
+        openPage();
+
+        page.changePassword("wrong-pass", "new.pass", "new.pass");
+
+        assertThat(page.getStatusMessage(), is("Your preview password is incorrect!"));
+
+    }
+
+    @Test
+    public void changePasswordWithInvalidRepeatPassword(){
+
+        openPage();
+
+        page.changePassword("eu.pass", "new.pass", "wrong.new.pass");
+
+        assertThat(page.getStatusMessage(), is("Password does not match the confirm password!"));
+
+    }
+
+    private void openPage() {
         openBrowser();
         loginPage.login("eu@fast.com", "eu.pass");
 
         WebElement preferencesBtn = driver.findElement(By.cssSelector("body > nav > div > div > div > button"));
         preferencesBtn.click();
-
-        changePasswordPage.changePasswordWithInvalidCurrentPassword("wrong-pass", "new.pass", "new.pass");
-
-        WebElement errorMessageOnPreferences = driver.findElement(By.cssSelector("#preferences-win > form > div > div > div.modal-body > div.status-msg"));
-        System.out.println(errorMessageOnPreferences.getText());
-
-        assertThat(errorMessageOnPreferences.getText(), is("Your preview password is incorrect!"));
-
     }
 
 }
