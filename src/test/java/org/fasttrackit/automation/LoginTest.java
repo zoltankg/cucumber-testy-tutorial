@@ -14,11 +14,13 @@ import static org.hamcrest.core.Is.is;
 
 public class LoginTest extends TestBase {
 
-    private LoginPage loginPage;
+    //private LoginPage loginPage;
 
-    public LoginTest() {
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
+    //public LoginTest() {
+    //    loginPage = PageFactory.initElements(driver, LoginPage.class);
+    //}
+
+    private LoginView loginPage = new LoginView();
 
     @Test
     public void validLoginTest() {
