@@ -15,6 +15,9 @@ public class ElementsView {
     public CheckBox stopProcessCheckbox = new CheckBox(stopProcessLabel);
     public CheckBox labelWithEnterCheckbox = new CheckBox(withEnterLabel);
 
+
+    // the main is for verify xpath of checkbox!!
+
     public static void main(String[] args) {
         ElementsView test = new ElementsView();
         System.out.println(test.stopProcessLabel.getSelector());

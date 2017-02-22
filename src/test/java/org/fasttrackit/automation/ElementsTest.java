@@ -1,9 +1,6 @@
 package org.fasttrackit.automation;
 
 
-import com.sdl.selenium.web.SearchType;
-import com.sdl.selenium.web.WebLocator;
-import com.sdl.selenium.web.form.CheckBox;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.util.TestBase;
 import org.testng.annotations.Test;
@@ -13,7 +10,7 @@ import static org.hamcrest.core.Is.is;
 
 public class ElementsTest extends TestBase {
 
-    private LoginView loginPgage = new LoginView();
+    private LoginView loginView = new LoginView();
     private ElementsView page = new ElementsView();
 
 
@@ -21,7 +18,7 @@ public class ElementsTest extends TestBase {
     @Test
     public void checkboxesTest() {
         openLoginPage();
-        loginPgage.login("eu@fast.com", "eu.pass");
+        loginView.login("eu@fast.com", "eu.pass");
         //checkOnCheckbox.check();
 
         page.stopProcessCheckbox.click();
