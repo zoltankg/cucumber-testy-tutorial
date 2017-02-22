@@ -1,30 +1,25 @@
 package org.fasttrackit.automation;
 
 
+import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
+import com.sdl.selenium.web.form.CheckBox;
 import com.sdl.selenium.web.form.TextField;
 import com.sdl.selenium.web.link.WebLink;
 import com.sdl.selenium.web.utils.Utils;
 
 public class ElementsView {
 
-    private WebLocator checkboxStop = new WebLocator().setClasses("checkbox");
-    private WebLocator checkLabel = new WebLocator().setClasses("checkbox checkbox-enter");
-    private WebLocator dropdownButton = new WebLocator().setClasses("btn dropdown-toggle clearfix");
-    private WebLocator selectManualOption = new WebLocator().setTag("li rel='1'");
+    public WebLocator stopProcessLabel = new WebLocator().setText("Stop the process?", SearchType.TRIM);
+    public WebLocator withEnterLabel = new WebLocator().setText("Label with Enter.", SearchType.CHILD_NODE);
+    public CheckBox stopProcessCheckbox = new CheckBox(stopProcessLabel);
+    public CheckBox labelWithEnterCheckbox = new CheckBox(withEnterLabel);
 
-
-    public void check() {
-
-
-
-        checkboxStop.click();
-        checkLabel.click();
-        dropdownButton.click();
-
-        Utils.sleep(1000);
-
-        selectManualOption.doClick();
+    public static void main(String[] args) {
+        ElementsView test = new ElementsView();
+        System.out.println(test.stopProcessLabel.getSelector());
+        System.out.println(test.withEnterLabel.getSelector());
+        System.out.println(test.stopProcessCheckbox.getSelector());
+        System.out.println(test.labelWithEnterCheckbox.getSelector());
     }
-
 }

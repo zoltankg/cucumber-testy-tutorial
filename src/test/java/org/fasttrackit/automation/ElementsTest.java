@@ -14,12 +14,7 @@ import static org.hamcrest.core.Is.is;
 public class ElementsTest extends TestBase {
 
     private LoginView loginPgage = new LoginView();
-    private ElementsView checkOnCheckbox = new ElementsView();
-
-    private WebLocator stopProcessLabel = new WebLocator().setText("Stop the process?", SearchType.TRIM);
-    private WebLocator withEnterLabel = new WebLocator().setText("Label with Enter.", SearchType.CHILD_NODE);
-    private CheckBox stopProcessCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[3]/label/input");
-    private CheckBox labelWithEnterCheckbox = new CheckBox().setElPath("/html/body/form[1]/div[4]/label/input");
+    private ElementsView page = new ElementsView();
 
 
 
@@ -29,21 +24,21 @@ public class ElementsTest extends TestBase {
         loginPgage.login("eu@fast.com", "eu.pass");
         //checkOnCheckbox.check();
 
-        stopProcessCheckbox.click();
-        labelWithEnterCheckbox.click();
+        page.stopProcessCheckbox.click();
+        page.labelWithEnterCheckbox.click();
 
         Utils.sleep(2000);
 
-        stopProcessLabel.click();
-        withEnterLabel.click();
+        page.stopProcessLabel.click();
+        page.withEnterLabel.click();
 
         Utils.sleep(2000);
 
-        stopProcessLabel.click();
-        withEnterLabel.click();
+        page.stopProcessLabel.click();
+        page.withEnterLabel.click();
 
-        assertThat("Stop the process is selected", stopProcessCheckbox.isSelected(), is(true));
-        assertThat("Label with Enter.", labelWithEnterCheckbox.isSelected(), is(true));
+        assertThat("Stop the process is selected", page.stopProcessCheckbox.isSelected(), is(true));
+        assertThat("Label with Enter.", page.labelWithEnterCheckbox.isSelected(), is(true));
 
 
 
