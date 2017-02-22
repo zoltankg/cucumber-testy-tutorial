@@ -1,6 +1,8 @@
 package org.fasttrackit.automation;
 
 
+import com.sdl.selenium.web.WebLocator;
+import com.sdl.selenium.web.button.Button;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.util.TestBase;
 import org.testng.annotations.Test;
@@ -36,7 +38,24 @@ public class ElementsTest extends TestBase {
 
         assertThat("Stop the process is selected", page.stopProcessCheckbox.isSelected(), is(true));
         assertThat("Label with Enter.", page.labelWithEnterCheckbox.isSelected(), is(true));
+    }
 
+    @Test
+    public void dropDownTest() {
+        openLoginPage();
+        loginView.login("eu@fast.com", "eu.pass");
+
+        page.autoOption.click();
+        page.manualOption.click();
+    }
+
+    @Test
+    public void changeCalendarDay(){
+        openLoginPage();
+        loginView.login("eu@fast.com", "eu.pass");
+
+        page.pressOnCalendar.click();
+        page.pressOn25Day.click();
 
 
 /*
