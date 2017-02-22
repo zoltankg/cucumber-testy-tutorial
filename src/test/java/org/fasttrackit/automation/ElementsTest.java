@@ -44,6 +44,8 @@ public class ElementsTest extends TestBase {
 
         assertThat("Stop the process is selected", stopProcessCheckbox.isSelected(), is(true));
 
+
+
 /*
         WebLocator dropdownButton = new WebLocator().setElPath("/html/body/form[1]/div[2]/div/div/button");
         dropdownButton.click();
