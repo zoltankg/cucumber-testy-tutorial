@@ -16,13 +16,12 @@ public class LoginTest extends TestBase {
     //    loginPage = PageFactory.initElements(driver, LoginPage.class);
     //}
 
-    private LoginView loginPage = new LoginView();
 
     @Test
     public void validLoginTest() {
         openLoginPage();
 
-        loginPage.login("eu@fast.com", "eu.pass");
+        loginView.login("eu@fast.com", "eu.pass");
 
     }
 
@@ -30,7 +29,7 @@ public class LoginTest extends TestBase {
     public void invalidPasswordTest() {
         openLoginPage();
 
-        loginPage.login("eu@fast.com", "eu.pass123");
+        loginView.login("eu@fast.com", "eu.pass123");
 
         WebElement errorElement = driver.findElement(By.className("error-msg"));
         System.out.println(errorElement.getText());

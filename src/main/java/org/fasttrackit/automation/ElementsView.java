@@ -28,6 +28,12 @@ public class ElementsView {
     public WebLocator pressOnCalendar = new WebLocator().setElCssSelector("#dp3 > span > i");
     public WebLocator pressOn25Day = new WebLocator().setText("25");
 
+    public WebLocator tableParentForCheckbox = new WebLocator().setClasses("table table-striped table-bordered");
+    public CheckBox firstCheckboxInTable = new CheckBox(tableParentForCheckbox).setElPath("/tbody/tr[1]/td[1]/input");
+    public CheckBox secondCheckboxInTable = new CheckBox(tableParentForCheckbox).setElPath("/tbody/tr[2]/td[1]/input");
+    public CheckBox checkbox2 = new CheckBox(tableParentForCheckbox).setElPath("//input[2]");
+
+
 
     // the main is for verify xpath of checkbox!!
 
@@ -49,5 +55,11 @@ public class ElementsView {
 
         System.out.println(test.pressOnCalendar.getSelector());
         System.out.println(test.pressOn25Day.getSelector());
+
+        System.out.println(test.tableParentForCheckbox.getSelector());
+        System.out.println(test.firstCheckboxInTable.getSelector());
+        System.out.println(test.secondCheckboxInTable.getSelector());
+        System.out.println(test.checkbox2.getSelector());
+
     }
 }
