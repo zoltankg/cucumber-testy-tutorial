@@ -32,11 +32,23 @@ public class TablesTest extends TestBase {
         openLoginPage();
         loginView.login("eu@fast.com", "eu.pass");
 
-        Row row = table.getRow(new Cell(4, "davidmiller@mail.com")); //Source from GitHub/ Tasty/ Table and row examples
-
-        //WebLocator checkbox = new WebLocator(row).setTag("input"); The first solution with WebLocator!
+        //Source from GitHub/ Tasty/ Table and row examples
+        //The first solution with Row and CheckBox class!
+        Row row = table.getRow(new Cell(4, "davidmiller@mail.com"));
         CheckBox checkbox = new CheckBox(row);
-
         checkbox.click();
+
+        //WebLocator checkbox = new WebLocator(row).setTag("input"); The second solution with WebLocator and Row!
+        //checkbox.click();
+
+        //The third solution with WebLocator
+        WebLocator tableLocator = new WebLocator().setTag("table");
+        WebLocator firstNameLocator = new WebLocator().setText("Bob");
+        WebLocator lastNameLocator = new WebLocator().setText("Smith");
+        WebLocator rowLocator = new WebLocator(tableLocator).setTag("tr").setChildNodes(firstNameLocator, lastNameLocator);
+        WebLocator checkboxLocator = new WebLocator().setContainer(rowLocator).setTag("input");
+
+        checkboxLocator.click();
+
     }
 }
